@@ -20,7 +20,7 @@ const TIPOS = [
 export default function Catalogo({ addToCart, productos = [] }) {
   const [filtroOcasion, setFiltroOcasion] = useState('todas');
   const [filtroTipo, setFiltroTipo] = useState('todos');
-  const [showFilters, setShowFilters] = useState(false); // Estado para mostrar/ocultar filtros
+  const [showFiltersMobile, setShowFiltersMobile] = useState(false);
 
   const productosFiltrados = productos.filter(p => {
     let matchOcasion = true;
@@ -61,13 +61,13 @@ export default function Catalogo({ addToCart, productos = [] }) {
             <p className="text-burgundy/75 mt-1">Explora nuestras creaciones y encuentra el postre ideal.</p>
           </div>
 
-          {/* Botón para abrir/cerrar filtros */}
+          {/* Botón para abrir/cerrar filtros SOLO EN MÓVILES */}
           <button 
-            onClick={() => setShowFilters(!showFilters)}
-            className="inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl font-bold text-sm bg-white border-2 border-sweetpink hover:bg-sweetpink/10 text-burgundy transition-all shadow-sm"
+            onClick={() => setShowFiltersMobile(!showFiltersMobile)}
+            className="lg:hidden inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl font-bold text-sm bg-white border-2 border-sweetpink hover:bg-sweetpink/10 text-burgundy transition-all shadow-sm"
           >
             <Filter className="w-5 h-5" />
-            <span>{showFilters ? 'Ocultar Filtros' : 'Filtrar Productos'}</span>
+            <span>{showFiltersMobile ? 'Ocultar Filtros' : 'Filtrar Productos'}</span>
             {getFiltrosActivosCount() > 0 && (
               <span className="bg-cherry text-cream text-[10px] w-5 h-5 flex items-center justify-center rounded-full ml-2">
                 {getFiltrosActivosCount()}
@@ -76,75 +76,75 @@ export default function Catalogo({ addToCart, productos = [] }) {
           </button>
         </div>
         
-        <div className="flex flex-col gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
           
-          {/* Panel de Filtros (Colapsable) */}
-          <div className={`overflow-hidden transition-all duration-500 ease-in-out ${showFilters ? 'max-h-[2000px] opacity-100 mb-6' : 'max-h-0 opacity-0 mb-0'}`}>
-            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-sweetpink/40">
+          {/* Panel de Filtros */}
+          {/* En móviles es colapsable, en PC (lg) es un sidebar siempre visible */}
+          <aside className={`lg:col-span-1 transition-all duration-500 ease-in-out overflow-hidden lg:overflow-visible ${showFiltersMobile ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0 lg:max-h-none lg:opacity-100'}`}>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-sweetpink/40 sticky top-28">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="font-serif text-xl font-bold text-burgundy">¿Qué estás buscando?</h3>
+                <h3 className="font-serif text-xl font-bold text-burgundy">Filtros</h3>
                 {(filtroOcasion !== 'todas' || filtroTipo !== 'todos') && (
-                  <button onClick={clearFilters} className="text-[12px] font-bold text-cherry hover:underline flex items-center">
-                    <FilterX className="w-4 h-4 mr-1" /> Limpiar Filtros
+                  <button onClick={clearFilters} className="text-[10px] text-cherry hover:underline flex items-center font-bold">
+                    <FilterX className="w-3 h-3 mr-1" /> Limpiar
                   </button>
                 )}
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Filtro: Ocasiones */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-burgundy/60 mb-4 border-b border-sweetpink/30 pb-2">Ocasiones / Temáticas</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {OCASIONES.map(oc => {
-                      const Icon = oc.icon;
-                      const isActive = filtroOcasion === oc.id;
-                      return (
-                        <button 
-                          key={oc.id}
-                          onClick={() => setFiltroOcasion(oc.id)}
-                          className={`w-full flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border ${
-                            isActive ? 'bg-burgundy text-cream border-burgundy shadow-md' : 'bg-cream/30 text-burgundy border-sweetpink/30 hover:bg-sweetpink/20 hover:border-sweetpink'
-                          }`}
-                        >
-                          {Icon && <Icon className={`w-4 h-4 mr-3 ${isActive ? 'text-cream' : 'text-cherry'}`} />}
-                          {!Icon && <span className="w-4 h-4 mr-3"></span>}
-                          {oc.label}
-                        </button>
-                      )
-                    })}
-                  </div>
-                </div>
-
-                {/* Filtro: Tipos */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-burgundy/60 mb-4 border-b border-sweetpink/30 pb-2">Tipo de Dulce</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {TIPOS.map(tp => {
-                      const Icon = tp.icon;
-                      const isActive = filtroTipo === tp.id;
-                      return (
-                        <button 
-                          key={tp.id}
-                          onClick={() => setFiltroTipo(tp.id)}
-                          className={`w-full flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border ${
-                            isActive ? 'bg-burgundy text-cream border-burgundy shadow-md' : 'bg-cream/30 text-burgundy border-sweetpink/30 hover:bg-sweetpink/20 hover:border-sweetpink'
-                          }`}
-                        >
-                          {Icon && <Icon className={`w-4 h-4 mr-3 ${isActive ? 'text-cream' : 'text-cherry'}`} />}
-                          {!Icon && <span className="w-4 h-4 mr-3"></span>}
-                          {tp.label}
-                        </button>
-                      )
-                    })}
-                  </div>
+              {/* Filtro: Ocasiones */}
+              <div className="mb-8">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-burgundy/60 mb-4 border-b border-sweetpink/30 pb-2">Ocasiones / Temáticas</h4>
+                <div className="grid grid-cols-1 gap-2">
+                  {OCASIONES.map(oc => {
+                    const Icon = oc.icon;
+                    const isActive = filtroOcasion === oc.id;
+                    return (
+                      <button 
+                        key={oc.id}
+                        onClick={() => setFiltroOcasion(oc.id)}
+                        className={`w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                          isActive ? 'bg-burgundy text-cream' : 'text-burgundy hover:bg-sweetpink/20'
+                        }`}
+                      >
+                        {Icon && <Icon className={`w-4 h-4 mr-3 ${isActive ? 'text-cream' : 'text-cherry'}`} />}
+                        {!Icon && <span className="w-4 h-4 mr-3"></span>}
+                        {oc.label}
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* Rejilla Principal de Productos */}
-          <div className="w-full">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {/* Filtro: Tipos */}
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-burgundy/60 mb-4 border-b border-sweetpink/30 pb-2">Tipo de Dulce</h4>
+                <div className="grid grid-cols-1 gap-2">
+                  {TIPOS.map(tp => {
+                    const Icon = tp.icon;
+                    const isActive = filtroTipo === tp.id;
+                    return (
+                      <button 
+                        key={tp.id}
+                        onClick={() => setFiltroTipo(tp.id)}
+                        className={`w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                          isActive ? 'bg-burgundy text-cream' : 'text-burgundy hover:bg-sweetpink/20'
+                        }`}
+                      >
+                        {Icon && <Icon className={`w-4 h-4 mr-3 ${isActive ? 'text-cream' : 'text-cherry'}`} />}
+                        {!Icon && <span className="w-4 h-4 mr-3"></span>}
+                        {tp.label}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+            </div>
+          </aside>
+
+          {/* Rejilla Principal de Productos (Derecha) */}
+          <div className="lg:col-span-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {productosFiltrados.length > 0 ? productosFiltrados.map((p, index) => (
                 <div 
                   data-aos="fade-up"
