@@ -1,5 +1,6 @@
 import { PlusCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function BestSellers({ addToCart, productos = [] }) {
   // Simular los más vendidos tomando los primeros 4
@@ -21,40 +22,40 @@ export default function BestSellers({ addToCart, productos = [] }) {
         </div>
 
         {/* Rejilla de Productos */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {bestSellers.map(p => (
-            <div key={p.id} className="bg-cream/40 rounded-2xl border border-sweetpink/30 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
-              <div>
-                <div className="relative aspect-[1080/1350] bg-sweetpink/20 overflow-hidden">
-                  <img 
-                    src={p.imagen} 
-                    alt={p.nombre} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    onError={(e) => {
-                      e.target.src = `https://placehold.co/1080x1350/FFFDF0/5C0612?text=${encodeURIComponent(p.nombre)}`;
-                    }}
-                  />
-                  <span className="absolute top-3 left-3 bg-burgundy text-cream text-[9px] font-bold px-2.5 py-1.5 rounded-lg uppercase tracking-wider">
-                    {p.badge}
-                  </span>
-                </div>
-                <div className="p-5 text-center">
-                  <h4 className="font-serif text-lg font-bold text-burgundy group-hover:text-cherry transition-colors duration-200">{p.nombre}</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {bestSellers.map((item, index) => (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              key={item.id} 
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col group border border-sweetpink/20"
+            >
+              <div className="relative h-64 overflow-hidden">
+                <img src={item.imagen} alt={item.nombre} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                {/* Etiqueta flotante estética */}
+                <div className="absolute top-3 right-3 bg-cream/90 backdrop-blur-sm px-2.5 py-1 rounded-md shadow-sm border border-sweetpink/30">
+                  <span className="text-[10px] font-bold text-cherry uppercase tracking-wider">Top Ventas</span>
                 </div>
               </div>
-              <div className="p-5 pt-0">
-                <button 
-                  onClick={() => addToCart(p)}
-                  className="w-full py-2.5 bg-cherry hover:bg-cherry-light text-cream font-bold text-xs rounded-xl transition-all shadow flex items-center justify-center space-x-1.5"
-                >
-                  <PlusCircle className="w-3.5 h-3.5" />
-                  <span>Añadir al Pedido</span>
-                </button>
+              <div className="p-5 flex flex-col flex-grow">
+                <h3 className="text-lg font-serif font-bold text-burgundy mb-1 line-clamp-1">{item.nombre}</h3>
+                
+                <div className="mt-auto pt-4 flex items-center justify-between">
+                  <span className="text-xl font-bold text-cherry">S/ {item.precioVenta.toFixed(2)}</span>
+                  <button 
+                    onClick={() => addToCart(item)}
+                    className="flex items-center space-x-1.5 text-xs font-bold bg-burgundy text-cream px-3 py-2 rounded-lg hover:bg-burgundy-light transition-colors"
+                  >
+                    <PlusCircle className="w-4 h-4" />
+                    <span>Añadir</span>
+                  </button>
+                </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );
