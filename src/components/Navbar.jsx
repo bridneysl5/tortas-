@@ -1,6 +1,6 @@
 import { ShoppingBag, Instagram } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import logo from '../img/logo.png';
+import logo from '../img/logo.webp';
 
 export default function Navbar({ cartCount, toggleCart }) {
   return (
