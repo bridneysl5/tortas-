@@ -9,7 +9,6 @@ import Carrito from './components/Carrito';
 import Home from './pages/Home';
 import CatalogPage from './pages/CatalogPage';
 import FloatingButtons from './components/FloatingButtons';
-import CustomCursor from './components/CustomCursor';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -93,8 +92,7 @@ function App() {
 
   return (
     <Router>
-      <div className="font-sans text-burgundy bg-cream min-h-screen cursor-none">
-        <CustomCursor />
+      <div className="font-sans text-burgundy bg-cream min-h-screen">
         <Navbar cartCount={totalCartCount} toggleCart={toggleCart} />
         <main className="flex-grow">
           <Routes>
