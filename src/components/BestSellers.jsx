@@ -24,11 +24,8 @@ export default function BestSellers({ addToCart, productos = [] }) {
         {/* Rejilla de Productos */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {bestSellers.map((item, index) => (
-            <div data-aos=" fade-up\ 
-               
-               
-              
-              
+            <div 
+              data-aos="fade-up"
               key={item.id} 
               className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col group border border-sweetpink/20"
             >

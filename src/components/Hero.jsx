@@ -12,11 +12,9 @@ export default function Hero() {
         <div className="flex flex-col lg:flex-row items-center gap-12">
           
           {/* Lado Izquierdo (Desktop) / Columna completa (Mobile) */}
-          <div data-aos=" fade-up\ 
-             
-             
-            
-            className="w-full lg:w-7/12 flex flex-col text-center lg:text-left"
+          <div 
+              data-aos="fade-up"
+              className="w-full lg:w-7/12 flex flex-col text-center lg:text-left"
           >
             
             {/* Título y subtítulo */}
@@ -53,11 +51,9 @@ export default function Hero() {
           </div>
 
           {/* Lado Derecho (Desktop only - Imagen del pastel) */}
-          <div data-aos=" fade-up\ 
-             
-             
-            
-            className="hidden lg:flex w-full lg:w-5/12 justify-center"
+          <div 
+              data-aos="fade-up"
+              className="hidden lg:flex w-full lg:w-5/12 justify-center"
           >
             <div className="relative w-80 h-80 xl:w-96 xl:h-96 float-magic">
               <div className="absolute inset-0 bg-sweetpink rounded-full opacity-30 blur-2xl"></div>

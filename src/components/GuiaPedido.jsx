@@ -14,11 +14,8 @@ export default function GuiaPedido() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           {/* Paso 1 */}
-          <div data-aos=" fade-up\ 
-            
-            
-            
-            
+          <div 
+            data-aos="fade-up"
             className="bg-white p-6 rounded-2xl border border-sweetpink/30 space-y-3"
           >
             <div className="w-10 h-10 bg-sweetpink rounded-xl flex items-center justify-center font-bold text-burgundy">1</div>
@@ -29,11 +26,8 @@ export default function GuiaPedido() {
           </div>
 
           {/* Paso 2 */}
-          <div data-aos=" fade-up\ 
-            
-            
-            
-            
+          <div 
+            data-aos="fade-up"
             className="bg-white p-6 rounded-2xl border border-sweetpink/30 space-y-3"
           >
             <div className="w-10 h-10 bg-sweetpink rounded-xl flex items-center justify-center font-bold text-burgundy">2</div>
@@ -44,11 +38,8 @@ export default function GuiaPedido() {
           </div>
 
           {/* Paso 3 */}
-          <div data-aos=" fade-up\ 
-            
-            
-            
-            
+          <div 
+            data-aos="fade-up"
             className="bg-white p-6 rounded-2xl border border-sweetpink/30 space-y-3"
           >
             <div className="w-10 h-10 bg-sweetpink rounded-xl flex items-center justify-center font-bold text-burgundy">3</div>

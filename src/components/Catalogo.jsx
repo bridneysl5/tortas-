@@ -123,10 +123,8 @@ export default function Catalogo({ addToCart, productos = [] }) {
           <div className="lg:col-span-3">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {productosFiltrados.length > 0 ? productosFiltrados.map((p, index) => (
-                <div data-aos=" fade-up\ 
-                  
-                  
-                  
+                <div 
+                  data-aos="fade-up"
                   key={p.id} 
                   className="bg-cream/40 rounded-2xl border border-sweetpink/30 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
                 >
