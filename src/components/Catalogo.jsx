@@ -1,5 +1,5 @@
 import { PlusCircle, Heart, PartyPopper, Music, Star, Gift, FilterX } from 'lucide-react';
-import { motion } from 'framer-motion';
+
 
 const OCASIONES = [
   { id: 'todas', label: 'Todas las Ocasiones' },
@@ -123,10 +123,10 @@ export default function Catalogo({ addToCart, productos = [] }) {
           <div className="lg:col-span-3">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {productosFiltrados.length > 0 ? productosFiltrados.map((p, index) => (
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                <div data-aos=" fade-up\ 
+                  
+                  
+                  
                   key={p.id} 
                   className="bg-cream/40 rounded-2xl border border-sweetpink/30 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
                 >
@@ -160,7 +160,7 @@ export default function Catalogo({ addToCart, productos = [] }) {
                       <span>Añadir al Pedido</span>
                     </button>
                   </div>
-                </motion.div>
+                </div>
               )) : (
                 <div className="col-span-full flex flex-col items-center justify-center py-20 text-burgundy/50 bg-white rounded-2xl border border-dashed border-sweetpink/40">
                   <FilterX className="w-12 h-12 mb-3 text-sweetpink" />

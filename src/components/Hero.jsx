@@ -1,7 +1,7 @@
 import { ShoppingCart, Camera } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import tortaImg from '../img/torta banner inicio.webp';
-import { motion } from 'framer-motion';
+
 
 export default function Hero() {
   return (
@@ -12,10 +12,10 @@ export default function Hero() {
         <div className="flex flex-col lg:flex-row items-center gap-12">
           
           {/* Lado Izquierdo (Desktop) / Columna completa (Mobile) */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.6 }}
+          <div data-aos=" fade-up\ 
+             
+             
+            
             className="w-full lg:w-7/12 flex flex-col text-center lg:text-left"
           >
             
@@ -50,20 +50,20 @@ export default function Hero() {
               </div>
             </div>
 
-          </motion.div>
+          </div>
 
           {/* Lado Derecho (Desktop only - Imagen del pastel) */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }} 
-            animate={{ opacity: 1, scale: 1 }} 
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <div data-aos=" fade-up\ 
+             
+             
+            
             className="hidden lg:flex w-full lg:w-5/12 justify-center"
           >
             <div className="relative w-80 h-80 xl:w-96 xl:h-96 float-magic">
               <div className="absolute inset-0 bg-sweetpink rounded-full opacity-30 blur-2xl"></div>
-              <img src={tortaImg} alt="Torta Loty Bakery" className="w-full h-full object-contain relative z-10 drop-shadow-xl" />
+              <img src={tortaImg} alt="Torta Loty Bakery" className="w-full h-full object-contain relative z-10 drop-shadow-xl animate-float" />
             </div>
-          </motion.div>
+          </div>
 
         </div>
 

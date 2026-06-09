@@ -1,6 +1,6 @@
 import { PlusCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+
 
 export default function BestSellers({ addToCart, productos = [] }) {
   // Simular los más vendidos tomando los primeros 4
@@ -24,11 +24,11 @@ export default function BestSellers({ addToCart, productos = [] }) {
         {/* Rejilla de Productos */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {bestSellers.map((item, index) => (
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+            <div data-aos=" fade-up\ 
+               
+               
+              
+              
               key={item.id} 
               className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col group border border-sweetpink/20"
             >
@@ -53,7 +53,7 @@ export default function BestSellers({ addToCart, productos = [] }) {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

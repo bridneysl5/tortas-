@@ -9,6 +9,9 @@ import Carrito from './components/Carrito';
 import Home from './pages/Home';
 import CatalogPage from './pages/CatalogPage';
 import FloatingButtons from './components/FloatingButtons';
+import CustomCursor from './components/CustomCursor';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
   const [productos, setProductos] = useState([]);
@@ -16,7 +19,9 @@ function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
-    // Escuchar a Firebase solo por los productos del Emprendimiento "Tortas"
+    AOS.init({ duration: 800, once: true });
+    
+    // Escuchar la colección "productos" en vivo solo por los productos del Emprendimiento "Tortas"
     const q = query(collection(db, "productos"), where("emprendimiento", "==", "Tortas"));
     const unsub = onSnapshot(q, (snapshot) => {
       const docs = [];
@@ -88,23 +93,26 @@ function App() {
 
   return (
     <Router>
-      <Navbar cartCount={totalCartCount} toggleCart={toggleCart} />
-      <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={<Home addToCart={addToCart} productos={productos} />} />
-          <Route path="/catalogo" element={<CatalogPage addToCart={addToCart} productos={productos} />} />
-        </Routes>
-      </main>
-      <Footer />
-      
-      <Carrito 
-        isOpen={isCartOpen} 
-        toggleCart={toggleCart} 
-        cartItems={cartItems} 
-        changeQty={changeQty}
-        procesarPago={procesarPago}
-      />
-      <FloatingButtons toggleCart={toggleCart} cartCount={totalCartCount} />
+      <div className="font-sans text-burgundy bg-cream min-h-screen cursor-none">
+        <CustomCursor />
+        <Navbar cartCount={totalCartCount} toggleCart={toggleCart} />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home addToCart={addToCart} productos={productos} />} />
+            <Route path="/catalogo" element={<CatalogPage addToCart={addToCart} productos={productos} />} />
+          </Routes>
+        </main>
+        <Footer />
+        
+        <Carrito 
+          isOpen={isCartOpen} 
+          toggleCart={toggleCart} 
+          cartItems={cartItems} 
+          changeQty={changeQty}
+          procesarPago={procesarPago}
+        />
+        <FloatingButtons toggleCart={toggleCart} cartCount={totalCartCount} />
+      </div>
     </Router>
   );
 }

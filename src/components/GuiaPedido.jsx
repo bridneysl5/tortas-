@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+
 
 export default function GuiaPedido() {
   return (
@@ -14,11 +14,11 @@ export default function GuiaPedido() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           {/* Paso 1 */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+          <div data-aos=" fade-up\ 
+            
+            
+            
+            
             className="bg-white p-6 rounded-2xl border border-sweetpink/30 space-y-3"
           >
             <div className="w-10 h-10 bg-sweetpink rounded-xl flex items-center justify-center font-bold text-burgundy">1</div>
@@ -26,14 +26,14 @@ export default function GuiaPedido() {
             <p className="text-xs text-burgundy/80 leading-relaxed">
               Explora nuestro catálogo y elige el modelo. Si quieres toques especiales, escríbelos en los detalles antes de añadir al carrito.
             </p>
-          </motion.div>
+          </div>
 
           {/* Paso 2 */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          <div data-aos=" fade-up\ 
+            
+            
+            
+            
             className="bg-white p-6 rounded-2xl border border-sweetpink/30 space-y-3"
           >
             <div className="w-10 h-10 bg-sweetpink rounded-xl flex items-center justify-center font-bold text-burgundy">2</div>
@@ -41,14 +41,14 @@ export default function GuiaPedido() {
             <p className="text-xs text-burgundy/80 leading-relaxed">
               Todos nuestros pasteles se hornean y decoran a mano con ingredientes de la más alta calidad para asegurar que tanto el diseño como el sabor sean espectaculares.
             </p>
-          </motion.div>
+          </div>
 
           {/* Paso 3 */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+          <div data-aos=" fade-up\ 
+            
+            
+            
+            
             className="bg-white p-6 rounded-2xl border border-sweetpink/30 space-y-3"
           >
             <div className="w-10 h-10 bg-sweetpink rounded-xl flex items-center justify-center font-bold text-burgundy">3</div>
@@ -56,7 +56,7 @@ export default function GuiaPedido() {
             <p className="text-xs text-burgundy/80 leading-relaxed">
               Llevamos tu pedido con máximo cuidado en auto climatizado directamente a tu evento o domicilio para que llegue intacto.
             </p>
-          </motion.div>
+          </div>
 
         </div>
 
