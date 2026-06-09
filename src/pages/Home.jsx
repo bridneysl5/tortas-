@@ -5,7 +5,7 @@ import GuiaPedido from '../components/GuiaPedido';
 export default function Home({ addToCart, productos }) {
   return (
     <>
-      <Hero />
+      <Hero productos={productos} />
       <BestSellers addToCart={addToCart} productos={productos} />
       <GuiaPedido />
     </>
