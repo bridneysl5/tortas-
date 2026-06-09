@@ -56,9 +56,9 @@ export default function Catalogo({ addToCart, productos = [] }) {
         
         <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6 text-center lg:text-left">
           <div>
-            <span className="text-xs uppercase tracking-widest font-bold text-cherry block mb-1">Loty Bakery Shop</span>
+            <span className="hidden lg:block text-xs uppercase tracking-widest font-bold text-cherry mb-1">Loty Bakery Shop</span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-burgundy">Catálogo Completo</h2>
-            <p className="text-burgundy/75 mt-1">Explora nuestras creaciones y encuentra el postre ideal.</p>
+            <p className="hidden lg:block text-burgundy/75 mt-1">Explora nuestras creaciones y encuentra el postre ideal.</p>
           </div>
 
           {/* Botón para abrir/cerrar filtros SOLO EN MÓVILES */}
