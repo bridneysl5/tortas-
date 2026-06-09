@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { PlusCircle, Heart, PartyPopper, Music, Star, Gift, FilterX } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const OCASIONES = [
   { id: 'todas', label: 'Todas las Ocasiones' },
@@ -16,6 +16,8 @@ const TIPOS = [
   { id: 'Cupcakes', label: 'Cupcakes', icon: PartyPopper },
   { id: 'Bocaditos', label: 'Bocaditos', icon: Gift }
 ];
+
+import { useState } from 'react';
 
 export default function Catalogo({ addToCart, productos = [] }) {
   const [filtroOcasion, setFiltroOcasion] = useState('todas');
@@ -119,11 +121,17 @@ export default function Catalogo({ addToCart, productos = [] }) {
 
           {/* Rejilla Principal de Productos (Derecha) */}
           <div className="lg:col-span-3">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {productosFiltrados.length > 0 ? productosFiltrados.map(p => (
-                <div key={p.id} className="bg-white rounded-2xl border border-sweetpink/30 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {productosFiltrados.length > 0 ? productosFiltrados.map((p, index) => (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  key={p.id} 
+                  className="bg-cream/40 rounded-2xl border border-sweetpink/30 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+                >
                   <div>
-                    <div className="relative aspect-[1080/1350] bg-sweetpink/10 overflow-hidden">
+                    <div className="relative aspect-[1080/1350] bg-sweetpink/20 overflow-hidden">
                       <img 
                         src={p.imagen} 
                         alt={p.nombre} 
@@ -132,24 +140,27 @@ export default function Catalogo({ addToCart, productos = [] }) {
                           e.target.src = `https://placehold.co/1080x1350/FFFDF0/5C0612?text=${encodeURIComponent(p.nombre)}`;
                         }}
                       />
-                      <span className="absolute top-3 left-3 bg-burgundy/90 backdrop-blur-sm text-cream text-[9px] font-bold px-3 py-1.5 rounded-lg uppercase tracking-wider shadow">
-                        {p.badge}
-                      </span>
+                      {p.emprendimiento && (
+                        <span className="absolute top-3 left-3 bg-burgundy text-cream text-[9px] font-bold px-2.5 py-1.5 rounded-lg uppercase tracking-wider">
+                          {p.emprendimiento}
+                        </span>
+                      )}
                     </div>
                     <div className="p-5 text-center">
                       <h4 className="font-serif text-lg font-bold text-burgundy group-hover:text-cherry transition-colors duration-200">{p.nombre}</h4>
+                      <p className="text-cherry font-bold mt-2">S/ {p.precioVenta.toFixed(2)}</p>
                     </div>
                   </div>
-                  <div className="p-5 pt-0">
+                  <div className="p-5 pt-0 mt-auto">
                     <button 
                       onClick={() => addToCart(p)}
-                      className="w-full py-3 bg-white border border-cherry/30 hover:bg-cherry hover:text-cream hover:border-transparent text-cherry font-bold text-xs rounded-xl transition-all flex items-center justify-center space-x-2"
+                      className="w-full py-2.5 bg-cherry hover:bg-cherry-light text-cream font-bold text-xs rounded-xl transition-all shadow flex items-center justify-center space-x-1.5"
                     >
-                      <PlusCircle className="w-4 h-4" />
+                      <PlusCircle className="w-3.5 h-3.5" />
                       <span>Añadir al Pedido</span>
                     </button>
                   </div>
-                </div>
+                </motion.div>
               )) : (
                 <div className="col-span-full flex flex-col items-center justify-center py-20 text-burgundy/50 bg-white rounded-2xl border border-dashed border-sweetpink/40">
                   <FilterX className="w-12 h-12 mb-3 text-sweetpink" />
